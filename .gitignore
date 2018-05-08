@@ -4,3 +4,4 @@ build
 .settings
 WebContent/META-INF
 WebContent/WEB-INF/lib
+src/META-INF/persistence.xml
