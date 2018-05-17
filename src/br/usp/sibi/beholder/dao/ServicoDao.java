@@ -1,14 +1,8 @@
 package br.usp.sibi.beholder.dao;
 
 import javax.persistence.TypedQuery;
-import javax.servlet.jsp.JspException;
-
-import java.util.Collections;
 import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import br.usp.sibi.beholder.models.Servico;
 import br.usp.sibi.beholder.dao.utils.JpaUtils;
 

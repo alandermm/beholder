@@ -30,6 +30,10 @@ public class Servico {
 	@Column(nullable = true)
 	private String informacoesAdicionais;
 
+	public int getId() {
+		return this.id;
+	}
+
 	public String getNome() {
 		return nome;
 	}

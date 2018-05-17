@@ -11,12 +11,20 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import org.glassfish.jersey.server.ResourceConfig;
+
 import br.usp.sibi.beholder.dao.ServicoDao;
 import br.usp.sibi.beholder.models.Servico;
+import br.usp.sibi.beholder.utils.CORSFilter;
 
 @Path("/servico")
-public class ServicoController {
-
+public class ServicoController extends ResourceConfig{
+	
+	public ServicoController() {
+		register(new CORSFilter());
+	}
+	
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -45,7 +53,7 @@ public class ServicoController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateServico(Servico servico) {
 		ServicoDao.atualizar(servico);
-		return Response.ok().build();
+		return Response.ok().header("Access-Control-Allow-Origin", "http://dev.sibi.usp.br").build();
 	}
 
 	@DELETE
