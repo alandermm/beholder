@@ -1,6 +1,5 @@
 package br.usp.sibi.beholder.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,19 +14,19 @@ public class Servico {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(nullable = false, length = 80)
+	//@Column(nullable = false, length = 80)
 	private String nome;
 
-	@Column(nullable = true)
+	//@Column(nullable = true)
 	private String urlIcone;
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	private int status;
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	private String descricaoStatus;
 
-	@Column(nullable = true)
+	//@Column(nullable = true)
 	private String informacoesAdicionais;
 
 	public int getId() {
