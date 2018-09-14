@@ -1,25 +1,39 @@
 package br.usp.sibi.be.tester;
 
+import java.awt.print.Printable;
+
 import com.mysql.cj.xdevapi.JsonArray;
 
-import br.usp.sibi.beholder.controllers.ServicoController;
-import br.usp.sibi.beholder.dao.ServicoDao;
-import br.usp.sibi.beholder.models.Servico;
+import br.usp.sibi.beholder.controllers.ServiceController;
+import br.usp.sibi.beholder.dao.ServiceDao;
+import br.usp.sibi.beholder.models.Service;
 import br.usp.sibi.beholder.utils.JerseyApplication;
 
 public class ServiceTester {
 
 	public static void main(String[] args) {
-		Servico service = new Servico();
-		service.setNome("Site 3");
+		Service service = new Service();
+		service.setName("Site");
 		service.setStatus(0);
-		service.setDescricaoStatus("OK 3");
-		service.setUrlIcone("assets/images/site_logo.png");
-		service.setInformacoesAdicionais("Funcionando");
+		service.setStatusDescription("OK");
+		service.setUrlIcon("assets/images/site_logo.png");
+		service.setAdditionalInformation("Funcionando");
 
-		ServicoController controller = new ServicoController();
+		ServiceController controller = new ServiceController();
 
-		controller.addServico(service);
-		JsonArray json = new JsonArray();
+		System.out.print(controller.deleteService("Site"));
+		
+		//ServiceDao dao = new ServiceDao();
+		//Service service2 = null;
+		//System.out.println(dao.insert(service));
+		//dao.deleteByName("Site2");
+		
+		/*service2 = dao.byId(1);
+		
+		if(service2 != null)
+			System.out.print(service2.getName());
+		else
+			System.out.print("Sistema não encontrado");
+		JsonArray json = new JsonArray();*/
 	}
 }

@@ -5,8 +5,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class JpaUtils{
-	public static EntityManager criarEntityManager() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("beholder");
+	private static EntityManagerFactory factory;
+	static {
+		factory = Persistence.createEntityManagerFactory("beholder");
+	}	
+	public static EntityManager createEntityManagerBeholder() { 
 		return factory.createEntityManager();
 	}
 }
