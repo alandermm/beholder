@@ -5,12 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.print.attribute.standard.DateTimeAtCreation;
 
 @Entity
 @Table(name = "services")
-public class Service {
 
+public class Service {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -21,14 +25,21 @@ public class Service {
 	@Column(nullable = true)
 	private String urlIcon;
 
-	@Column(nullable = false)
+	/*@Column(nullable = false)
 	private int status;
 
 	@Column(nullable = false)
-	private String statusDescription;
+	private String statusDescription;*/
 
 	@Column(nullable = true)
 	private String additionalInformation;
+	
+	@Column(nullable = true)
+	private boolean enabled = true;
+	//private DateTimeAtCreation creationDate;
+	
+	@ManyToOne
+	private Status status;
 
 	public int getId() {
 		return this.id;
@@ -54,7 +65,7 @@ public class Service {
 		this.urlIcon = urlIcon;
 	}
 
-	public int getStatus() {
+	/*public int getStatus() {
 		return status;
 	}
 
@@ -68,7 +79,7 @@ public class Service {
 
 	public void setStatusDescription(String statusDescription) {
 		this.statusDescription = statusDescription;
-	}
+	}*/
 
 	public String getAdditionalInformation() {
 		return additionalInformation;
@@ -76,5 +87,21 @@ public class Service {
 
 	public void setAdditionalInformation(String additionalInformation) {
 		this.additionalInformation = additionalInformation;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 }

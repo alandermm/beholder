@@ -6,14 +6,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.RollbackException;
 import br.usp.sibi.beholder.models.Service;
+import br.usp.sibi.beholder.models.Status;
 import br.usp.sibi.beholder.dao.utils.JpaUtils;
 
 public class ServiceDao {
+	
 	public static List<Service> all() {
 		List<Service> services = null;
 		EntityManager em = JpaUtils.createEntityManagerBeholder();
 		try {
-			TypedQuery<Service> q = em.createQuery("SELECT serv FROM Service serv", Service.class);
+			TypedQuery<Service> q = em.createQuery("SELECT serv FROM Service serv ORDER BY serv.status DESC, serv.name ASC", Service.class);
 			services = q.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,7 +60,7 @@ public class ServiceDao {
 		Service service = null;
 		try {
 			service = byName(name);
-			if (service == null)
+			if (service.equals(null))
 				return null;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,6 +117,27 @@ public class ServiceDao {
 		}
 		return true;
 	}
+	
+	/*public static boolean updateStatus(Status status) {
+		EntityManager em = JpaUtils.createEntityManagerBeholder();
+		Service service = new Service();
+		try {
+			service = byId(status.getId());
+			service.setStatus(status.getStatus());
+			service.setStatusDescription(status.getStatusDescription());
+			em.getTransaction().begin();
+			service = em.merge(service);
+			em.persist(service);
+			em.getTransaction().commit();
+		} catch(IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		return true;
+	}*/
 
 	public static boolean delete(int id) {
 		EntityManager em = JpaUtils.createEntityManagerBeholder();

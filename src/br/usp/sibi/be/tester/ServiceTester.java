@@ -1,6 +1,7 @@
 package br.usp.sibi.be.tester;
 
 import java.awt.print.Printable;
+import java.util.List;
 
 import com.mysql.cj.xdevapi.JsonArray;
 
@@ -12,7 +13,7 @@ import br.usp.sibi.beholder.utils.JerseyApplication;
 public class ServiceTester {
 
 	public static void main(String[] args) {
-		Service service = new Service();
+		/*Service service = new Service();
 		service.setName("Site");
 		service.setStatus(0);
 		service.setStatusDescription("OK");
@@ -21,7 +22,7 @@ public class ServiceTester {
 
 		ServiceController controller = new ServiceController();
 
-		System.out.print(controller.deleteService("Site"));
+		System.out.print(controller.deleteService("Site"));*/
 		
 		//ServiceDao dao = new ServiceDao();
 		//Service service2 = null;
@@ -35,5 +36,12 @@ public class ServiceTester {
 		else
 			System.out.print("Sistema não encontrado");
 		JsonArray json = new JsonArray();*/
+		
+		List<Service> services = null;
+		services = ServiceDao.all();
+		
+		for (Service service : services) {
+			System.out.println(service.getId() + " - " + service.getStatus() + " - " + service.getName());
+		}
 	}
 }

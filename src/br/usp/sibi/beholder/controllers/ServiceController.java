@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 
 import br.usp.sibi.beholder.dao.ServiceDao;
 import br.usp.sibi.beholder.models.Service;
+import br.usp.sibi.beholder.models.Status;
 
 @Path("/service")
 public class ServiceController {
@@ -67,6 +68,14 @@ public class ServiceController {
 		Boolean updated = ServiceDao.update(service);
 		return Response.ok(updated).build();
 	}
+	
+	/*@PUT
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateStatus(Status status) {
+		Boolean updated = ServiceDao.updateStatus(status);
+		return Response.ok(updated).build();
+	}*/
 
 	@DELETE
 	@Path("/id/{id}")
